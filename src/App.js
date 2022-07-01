@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import "./Assets/icons8-add-50.png"
+import "./Assets/icons8-delete-100.png"
 import "./App.css"
 import { db } from "./firebaseConfig"
 import {
@@ -42,77 +44,65 @@ function App() {
   }, [])
 
   return (
-    <div className='App text-center box-border'>
-      {/* CREATE */}
-      <div>
-        <h1 className='bg-red-500'>CREATE</h1>
-        <input
-          className='border-2 border-grey-900/50 rounded '
-          placeholder='Username'
-          onChange={event => {
-            setNewName(event.target.value)
-          }}
-        />
-        <input
-          className='border-2 border-grey-900/50 rounded'
-          placeholder='Age'
-          onChange={event => {
-            setNewAge(event.target.value)
-          }}
-        />
-        <br />
-        <button onClick={createUser} className='bg-green-500 rounded p-1'>
-          Create User
-        </button>
-      </div>
+    <div className='App flex justify-center items-center h-screen'>
+      <div className='w-4/12 h-fit align-middle border-2 border-grey-900 rounded-md p-2'>
+        <h1 className='text-center'>⚛️ React x Firebase 🔥</h1>
+        {/* READ */}
+        <div>
+          <div class='grid grid-cols-4 gap-4 underline underline-offset-2'>
+            <div className='justify-self-center'>Name</div>
+            <div className='justify-self-center'>Age</div>
+            <div className='justify-self-center'>Increment Age</div>
+            <div className='justify-self-center'>Delete User</div>
+          </div>
 
-      {/* READ */}
-      <div>
-        <h1 className='bg-red-500'>READ</h1>
-        <h1 className=''>
           {users.map(user => {
             return (
-              <div>
-                <p>Name: {user.name} </p>
-                <p>Age: {user.age}</p>
-              </div>
-            )
-          })}
-        </h1>
-      </div>
-
-      {/* UPDATE */}
-      <div>
-        <h1 className='bg-red-500'>UPDATE</h1>
-        <h1 className=''>
-          {users.map(user => {
-            return (
-              <div>
-                <p>Name: {user.name} </p>
-                <p>Age: {user.age}</p>
+              <div class='grid grid-cols-4 gap-4'>
+                <div className='justify-self-center'>{user.name} </div>
+                <div className='justify-self-center'>{user.age}</div>
                 <button
                   onClick={() => {
                     incrementAge(user.id, user.age)
                   }}
-                  className='bg-green-500 rounded p-1'
+                  className='justify-self-center'
                 >
-                  Increment Age
+                  ➕
                 </button>
                 <button
                   onClick={() => {
                     deleteUser(user.id)
                   }}
-                  className='bg-orange-500 rounded p-1'
+                  className='justify-self-center'
                 >
-                  Delete User
+                  🗑️
                 </button>
               </div>
             )
           })}
-        </h1>
-      </div>
+        </div>
 
-      {/* DELETE */}
+        {/* CREATE */}
+        <div className='flex justify-center m-1'>
+          <input
+            className='border-2 border-grey-900/50 rounded p-1'
+            placeholder='Username'
+            onChange={event => {
+              setNewName(event.target.value)
+            }}
+          />
+          <input
+            className='border-2 border-grey-900/50 rounded ml-2'
+            placeholder='Age'
+            onChange={event => {
+              setNewAge(event.target.value)
+            }}
+          />
+          <button onClick={createUser} className='bg-green-400 rounded ml-2'>
+            ➕🙋‍♂️{" "}
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
